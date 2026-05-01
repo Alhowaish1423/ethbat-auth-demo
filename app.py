@@ -20,7 +20,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-change-in-production")
 USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
 
 # ── Ethbat backend config ─────────────────────────────────────────────────────
-ETHBAT_URL = "http://localhost:8080"
+ETHBAT_URL = "https://ethbat-backend.onrender.com"
 ETHBAT_API_KEY = "test-api-key-001"
 
 
