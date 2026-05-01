@@ -109,7 +109,8 @@ def register():
                 session["reg_ethbat_session_id"] = d["session_id"]
                 ethbat_qr_b64 = make_qr_b64(d["qr_data"])
                 ethbat_code   = d["code_6digit"]
-        except Exception:
+        except Exception as e:
+            print(f"Ethbat enroll error: {e}")
             pass  # Ethbat backend offline — show Google Auth tab only
 
         return render_template(
