@@ -43,11 +43,6 @@
     </div>
     <button type="submit" class="btn btn--primary btn--full">Continue →</button>
   </form>
-  <script>
-    document.querySelector('form').addEventListener('submit', () => {
-      sessionStorage.setItem('login_start_ms', Date.now());
-    });
-  </script>
   <p class="form-footer">
     No account yet? <a href="{{ url_for('register') }}">Register here</a>
   </p>

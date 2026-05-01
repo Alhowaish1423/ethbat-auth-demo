@@ -17,6 +17,8 @@
   </div>
 
   <script>
+    sessionStorage.setItem('login_start_ms', Date.now());
+
     async function poll() {
       let data;
       try {
