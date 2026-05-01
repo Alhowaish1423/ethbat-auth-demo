@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home — Ethbat Auth Demo{% endblock %}
+{% block heading %}Ethbat Auth Demo{% endblock %}
+
+{% block content %}
+  <p class="subtitle">Secure two-factor authentication powered by Google Authenticator.</p>
+  <div class="btn-group">
+    <a href="{{ url_for('login') }}" class="btn btn--primary">Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn--secondary">Register</a>
+  </div>
+{% endblock %}

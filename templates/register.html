@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Register — Ethbat Auth Demo{% endblock %}
+{% block heading %}Create Account{% endblock %}
+
+{% block content %}
+  <p class="subtitle">Fill in your details to get started.</p>
+  <form method="POST" action="{{ url_for('register') }}">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="e.g. alice"
+        required
+        autofocus
+        autocomplete="username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="At least 6 characters"
+        required
+        autocomplete="new-password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        placeholder="Repeat your password"
+        required
+        autocomplete="new-password"
+      />
+    </div>
+    <button type="submit" class="btn btn--primary btn--full">Next →</button>
+  </form>
+  <p class="form-footer">
+    Already have an account? <a href="{{ url_for('login') }}">Log in</a>
+  </p>
+{% endblock %}

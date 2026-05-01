@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Set Up Authenticator — Ethbat Auth Demo{% endblock %}
+{% block heading %}Set Up Authenticator{% endblock %}
+
+{% block content %}
+  <p class="subtitle">
+    Scan the QR code with your authenticator app to complete registration.
+  </p>
+
+  {# ── Tabs (only show if Ethbat is available) ── #}
+  {% if ethbat_qr_b64 %}
+  <div class="tab-group">
+    <button class="tab-btn tab-btn--active" id="btn-ethbat" onclick="showTab('ethbat', this)">
+      Ethbat App
+    </button>
+    <button class="tab-btn" id="btn-totp" onclick="showTab('totp', this)">
+      Google Authenticator
+    </button>
+  </div>
+  {% endif %}
+
+  {# ── Ethbat tab ── #}
+  {% if ethbat_qr_b64 %}
+  <div id="tab-ethbat">
+    <div class="qr-wrapper">
+      <img src="data:image/png;base64,{{ ethbat_qr_b64 }}"
+           alt="Ethbat QR Code" class="qr-image" />
+    </div>
+    <details class="manual-entry">
+      <summary>Can't scan? Use the 6-digit code</summary>
+      <p>Type this code in the Ethbat app:</p>
+      <p><span class="secret-key" style="font-size:1.3rem;letter-spacing:6px;">
+        {{ ethbat_code }}
+      </span></p>
+      <p class="hint">Valid for 10 minutes.</p>
+    </details>
+    <p id="ethbat-status" style="text-align:center;color:#6b7280;margin-top:1rem;font-size:0.9rem;">
+      Waiting for Ethbat app…
+    </p>
+  </div>
+  {% endif %}
+
+  {# ── Google Auth tab ── #}
+  <div id="tab-totp" {% if ethbat_qr_b64 %}style="display:none"{% endif %}>
+    <div class="qr-wrapper">
+      <img src="data:image/png;base64,{{ totp_qr_b64 }}"
+           alt="Google Auth QR Code" class="qr-image" />
+    </div>
+    <details class="manual-entry">
+      <summary>Can't scan? Enter the key manually</summary>
+      <p>Account: <strong>{{ username }}</strong></p>
+      <p>Key: <code class="secret-key">{{ totp_secret }}</code></p>
+      <p class="hint">Select "Time-based" in your app.</p>
+    </details>
+    <form method="POST" action="{{ url_for('verify_register') }}">
+      <div class="form-group">
+        <label for="code">6-Digit Code</label>
+        <input type="text" id="code" name="code" placeholder="000000"
+               maxlength="6" pattern="\d{6}" inputmode="numeric"
+               required autofocus autocomplete="one-time-code" />
+      </div>
+      <button type="submit" class="btn btn--primary btn--full">
+        Verify &amp; Register
+      </button>
+    </form>
+  </div>
+
+  <script>
+    function showTab(name, btn) {
+      document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+      document.getElementById('tab-' + name).style.display = 'block';
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-btn--active'));
+      btn.classList.add('tab-btn--active');
+    }
+
+    {% if ethbat_qr_b64 %}
+    async function pollEthbat() {
+      let data;
+      try {
+        const res = await fetch("{{ url_for('ethbat_register_poll') }}");
+        data = await res.json();
+      } catch {
+        setTimeout(pollEthbat, 2000);
+        return;
+      }
+      const msg = document.getElementById('ethbat-status');
+      if (data.status === 'linked') {
+        msg.style.color = '#16a34a';
+        msg.textContent = 'Ethbat connected! Redirecting to login…';
+        setTimeout(() => { window.location.href = "{{ url_for('login') }}"; }, 1000);
+        return;
+      }
+      if (data.status === 'expired') {
+        msg.style.color = '#dc2626';
+        msg.textContent = 'Session expired. Please restart registration.';
+        return;
+      }
+      setTimeout(pollEthbat, 2000);
+    }
+    pollEthbat();
+    {% endif %}
+  </script>
+{% endblock %}

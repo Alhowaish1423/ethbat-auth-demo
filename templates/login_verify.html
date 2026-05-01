@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Two-Factor Auth — Ethbat Auth Demo{% endblock %}
+{% block heading %}Two-Factor Auth{% endblock %}
+
+{% block content %}
+  <p class="subtitle">
+    Open <strong>Google Authenticator</strong> and enter the 6-digit code
+    for <strong>{{ username }}</strong>.
+  </p>
+  <form method="POST" action="{{ url_for('login_verify') }}">
+    <div class="form-group">
+      <label for="code">Authenticator Code</label>
+      <input
+        type="text"
+        id="code"
+        name="code"
+        placeholder="000000"
+        maxlength="6"
+        pattern="\d{6}"
+        inputmode="numeric"
+        required
+        autofocus
+        autocomplete="one-time-code"
+      />
+    </div>
+    <button type="submit" class="btn btn--primary btn--full">Verify</button>
+  </form>
+  <p class="form-footer">
+    Wrong account? <a href="{{ url_for('login') }}">Go back</a>
+  </p>
+{% endblock %}

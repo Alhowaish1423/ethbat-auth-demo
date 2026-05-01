@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Login — Ethbat Auth Demo{% endblock %}
+{% block heading %}Welcome Back{% endblock %}
+
+{% block content %}
+  <form method="POST" action="{{ url_for('login') }}">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Your username"
+        required
+        autofocus
+        autocomplete="username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Your password"
+        required
+        autocomplete="current-password"
+      />
+    </div>
+    <div class="form-group">
+      <label>Authentication Method</label>
+      <div class="method-options">
+        <label class="method-option">
+          <input type="radio" name="method" value="ethbat" required>
+          <span>Ethbat App</span>
+        </label>
+        <label class="method-option">
+          <input type="radio" name="method" value="google">
+          <span>Google Authenticator</span>
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn--primary btn--full">Continue →</button>
+  </form>
+  <script>
+    document.querySelector('form').addEventListener('submit', () => {
+      sessionStorage.setItem('login_start_ms', Date.now());
+    });
+  </script>
+  <p class="form-footer">
+    No account yet? <a href="{{ url_for('register') }}">Register here</a>
+  </p>
+{% endblock %}

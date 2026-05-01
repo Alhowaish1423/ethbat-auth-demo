@@ -1,0 +1,36 @@
+{
+  "abdullah": {
+    "password": "scrypt:32768:8:1$cT1jXaEAkdQWcKxe$7989f0d104184d09d6cb656dfc7cf34a9aaefef8a051295f7a68ab5c24089001c7950ba01705d734c56902b72601a72bffa7951845add8f45bb862e89124f7c2",
+    "secret": "LEQEKONRT75SAKWXDDBVUURYGGVEMEEX"
+  },
+  "abdo": {
+    "password": "scrypt:32768:8:1$WNSxQw4inIsT8bKp$10e3bd0c8745ff0b80e1a1805fe42b3e0d69e6038aed4583436d0c1593900ca8e19a372e05a762d5cfe686ee06792e3da1b68ed638c3ae82f5a2ac88bc650f19",
+    "secret": null,
+    "ethbat_link_id": "link_vrnMRWQSS7cPwCtuIXcfgT3sWDA3_test-integrator-001"
+  },
+  "gabdo": {
+    "password": "scrypt:32768:8:1$U79reXRSBadq5j77$20775c768e2c0659fce92893616c39a39141e97d1f19efec4a30dea25d104f12086dcf23dd89293ac269563e3af0320f7c9da97cff34bcd4a0262e37909d6153",
+    "secret": "YYXRMEBVVAOGIOWCQ5EJMZ7EP5V3JKV7",
+    "ethbat_link_id": null
+  },
+  "abd1": {
+    "password": "scrypt:32768:8:1$avsYIiaFYidasHcL$7e7b1d2fe3d718266576c392ea354b8d428802fb1cf09122525728386277a130c6c67a945e85484571fb8c04397571b24b414e8fb45d222e1083b80fe9b02cad",
+    "secret": null,
+    "ethbat_link_id": "link_vrnMRWQSS7cPwCtuIXcfgT3sWDA3_test-integrator-001"
+  },
+  "abd2": {
+    "password": "scrypt:32768:8:1$lNrOcM28U471q8G7$432db8d915cab0ae0857ba8131337cb2cca1e30fddbbc601e9359f764f92b834b4e4a211d4ff68446188f7f0fa7b00a96bc18cd9951040acb089fd60fd7ecd97",
+    "secret": "TMXXPJOIYF4BECLRJVKKBQ5C6ADNONJT",
+    "ethbat_link_id": null
+  },
+  "k1": {
+    "password": "scrypt:32768:8:1$BmzjyrMKX2gyW1nA$85b54b956d54cbd4a5dc2776dd722262c28b8b765daea276ef6f5dc5de8b4875d41edad9850790a65de87f199c1920fbe9d50bb42235d493082e318067d54063",
+    "secret": null,
+    "ethbat_link_id": "link_Sei7K0xdMDPsGDjOA4JnfMe7ni02_test-integrator-001"
+  },
+  "ooo": {
+    "password": "scrypt:32768:8:1$1ouR4rXyT1I1RXfw$77caea16ab7fa6a63217b8259ee93faf23bed423d9f9c37265569e4ed63ef607e9c2d39991abe3fab6127011586b95239d9bbbef4875ed4d2f117920f05ddcb7",
+    "secret": "AUDFO22J45W67S2UGOIDFXIQE2RDECHL",
+    "ethbat_link_id": null
+  }
+}

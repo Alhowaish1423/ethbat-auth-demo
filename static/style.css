@@ -1,0 +1,297 @@
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #0f172a;
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #0ea5e9 0%, #1d4ed8 100%);
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+}
+
+/* ── Card Header ──────────────────────────────────────────────────────────── */
+.card-header {
+  background: linear-gradient(135deg, #0ea5e9 0%, #1d4ed8 100%);
+  color: #ffffff;
+  padding: 1.75rem 2rem;
+  text-align: center;
+}
+
+.card-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ── Card Body ────────────────────────────────────────────────────────────── */
+.card-body {
+  padding: 2rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ── Flash Messages ───────────────────────────────────────────────────────── */
+.flash {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 4px solid transparent;
+}
+
+.flash--error {
+  background: #fef2f2;
+  color: #dc2626;
+  border-left-color: #dc2626;
+}
+
+.flash--success {
+  background: #f0fdf4;
+  color: #16a34a;
+  border-left-color: #16a34a;
+}
+
+/* ── Forms ────────────────────────────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #f9fafb;
+  color: #111827;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  background: #ffffff;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn:hover  { opacity: 0.88; }
+.btn:active { transform: scale(0.98); }
+
+.btn--primary   { background: linear-gradient(135deg, #0ea5e9, #764ba2); color: #fff; }
+.btn--secondary { background: #f3f4f6; color: #374151; border: 2px solid #e5e7eb; }
+.btn--danger    { background: #dc2626; color: #fff; }
+.btn--full      { display: block; width: 100%; margin-top: 0.5rem; }
+
+/* Button group on home page */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-group .btn {
+  flex: 1;
+}
+
+/* ── QR Code ──────────────────────────────────────────────────────────────── */
+.qr-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 2px dashed #e5e7eb;
+}
+
+.qr-image {
+  width: 200px;
+  height: 200px;
+  image-rendering: pixelated;
+}
+
+/* ── Manual Key Fallback ──────────────────────────────────────────────────── */
+.manual-entry {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.manual-entry summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #0ea5e9;
+  user-select: none;
+}
+
+.manual-entry p {
+  margin-top: 0.5rem;
+}
+
+.secret-key {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  background: #e5e7eb;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+.hint {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* ── Login Method Radio Buttons ──────────────────────────────────────────── */
+.method-options {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+.method-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #374151;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.method-option:has(input:checked) {
+  border-color: #0ea5e9;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.method-option input[type="radio"] {
+  accent-color: #0ea5e9;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── Auth Method Tabs ─────────────────────────────────────────────────────── */
+.tab-group {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  background: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  font-family: inherit;
+}
+
+.tab-btn:hover       { color: #0ea5e9; }
+.tab-btn--active     { color: #0ea5e9; border-bottom-color: #0ea5e9; }
+
+/* ── Success Banner ───────────────────────────────────────────────────────── */
+.success-banner {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f0fdf4;
+  border-radius: 10px;
+  border: 2px solid #bbf7d0;
+  margin-bottom: 1.5rem;
+  color: #166534;
+}
+
+.success-banner p {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.success-banner strong {
+  font-size: 1.1rem;
+}
+
+/* ── Footer Link ──────────────────────────────────────────────────────────── */
+.form-footer {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.form-footer a {
+  color: #0ea5e9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}

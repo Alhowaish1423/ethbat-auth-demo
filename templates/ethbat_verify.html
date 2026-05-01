@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Ethbat Verification — Ethbat Auth Demo{% endblock %}
+{% block heading %}Waiting for Approval{% endblock %}
+
+{% block content %}
+  <p class="subtitle">
+    A notification was sent to your phone.<br>
+    Open the <strong>Ethbat</strong> app and tap <strong>Approve</strong> to log in.
+  </p>
+
+  <div style="text-align:center; padding: 1.5rem 0;">
+    <div style="font-size: 3.5rem; margin-bottom: 1rem;">📱</div>
+    <p id="status-msg" style="color: #6b7280; font-size: 0.95rem;">
+      Waiting for your approval…
+    </p>
+  </div>
+
+  <script>
+    async function poll() {
+      let data;
+      try {
+        const res = await fetch("{{ url_for('ethbat_challenge_poll') }}");
+        data = await res.json();
+      } catch {
+        setTimeout(poll, 2000);
+        return;
+      }
+
+      const msg = document.getElementById("status-msg");
+
+      if (data.status === "approved") {
+        msg.style.color = "#16a34a";
+        msg.textContent = "Approved! Logging you in…";
+        setTimeout(() => { window.location.href = "{{ url_for('success') }}"; }, 800);
+        return;
+      }
+
+      if (data.status === "denied") {
+        msg.style.color = "#dc2626";
+        msg.textContent = "Login denied on your phone.";
+        return;
+      }
+
+      if (data.status === "expired") {
+        msg.style.color = "#dc2626";
+        msg.textContent = "Request expired (2 min). Please try again.";
+        return;
+      }
+
+      setTimeout(poll, 2000);
+    }
+
+    poll();
+  </script>
+
+  <p class="form-footer">
+    {% if has_totp %}
+      <a href="{{ url_for('login_verify') }}">Try Google Authenticator instead</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Cancel and go back</a>
+    {% endif %}
+  </p>
+{% endblock %}
